@@ -15,5 +15,5 @@ gulp.task('js', function () {
 
 
 gulp.task('watch:js',['js'], function () {
-  gulp.watch('./lib/js/**/**/.js',['js'])
+  gulp.watch(['./lib/js/*.js', './lib/js/**/*.js', './lib/js/**/**/.js'],['js'])
 })

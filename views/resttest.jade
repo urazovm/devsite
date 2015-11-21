@@ -1,0 +1,12 @@
+extends ./layouts/layout
+
+block content
+  include ./modules/nav
+  .container
+    h1 REST Test
+    form
+      
+      .input-field.col.s12
+        textarea#object.materialize-textarea
+        label(for="object") Paste Your Object Here
+      input.btn.waves-light.waves-effect(type="submit", value="Submit")

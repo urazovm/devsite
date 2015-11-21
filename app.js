@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var home = require('./routes/index');
+var resttest = require('./routes/paypal/resttest');
 
 var app = express();
 
@@ -20,8 +21,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client')));
+app.use('/bower', express.static(path.join(__dirname, 'bower_components')));
 
 app.use('/', home);
+app.use('/paypal/resttest', resttest);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

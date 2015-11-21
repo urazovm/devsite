@@ -1,5 +1,7 @@
-extends layout
+extends ./layouts/layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  include ./modules/nav
+  .container
+    h1 Purblind Development
+    p Welcome to Purblind. Help yourself to the developer tools on this site.
