@@ -1,0 +1,23 @@
+div
+  h1 REST Test
+  .row
+    .col.s6
+      form
+        .input-field.col.s6
+          select(ng-model="call.method")
+            option(value="POST") POST 
+            option(value="GET") GET
+            option(value="DELETE") DELETE
+        .input-field.col.s6
+          select(ng-model="call.env")
+            option(value="https://api.sandbox.paypal.com") Sandbox
+            option(value="https://api.paypal.com") Live
+        .input-field.col.s12
+          select(ng-model="call.endpoint")
+            option(value="/v1/payments/payment") Create a payment /v1/payments/payment
+        .input-field.col.s12
+          textarea#object.materialize-textarea(ng-model="call.data")
+          label(for="object") Paste Your Object Here
+        button.btn.waves-light.waves-effect(type="button", ng-click="call.submit()") Submit
+    .col.s6
+      div(ng-model="call.response") {{call.response}}
