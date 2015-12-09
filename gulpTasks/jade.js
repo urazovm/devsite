@@ -3,10 +3,12 @@ var gulp = require('gulp'),
 
 
 gulp.task('jade', function() {
-  var locals = {};
+  var locals = {
+    pretty: true
+  };
   gulp.src(['./lib/templates/angular/*.jade'])
     .pipe(jade({
-      locals: locals
+      pretty: true
     }))
     .pipe(gulp.dest('./client/angular/templates'))
 })

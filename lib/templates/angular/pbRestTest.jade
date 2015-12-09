@@ -1,23 +1,44 @@
 div
   h1 REST Test
   .row
-    .col.s6
-      form
-        .input-field.col.s6
-          select(ng-model="call.method")
-            option(value="POST") POST 
-            option(value="GET") GET
-            option(value="DELETE") DELETE
-        .input-field.col.s6
-          select(ng-model="call.env")
-            option(value="https://api.sandbox.paypal.com") Sandbox
-            option(value="https://api.paypal.com") Live
-        .input-field.col.s12
-          select(ng-model="call.endpoint")
-            option(value="/v1/payments/payment") Create a payment /v1/payments/payment
-        .input-field.col.s12
-          textarea#object.materialize-textarea(ng-model="call.data")
-          label(for="object") Paste Your Object Here
-        button.btn.waves-light.waves-effect(type="button", ng-click="call.submit()") Submit
-    .col.s6
-      div(ng-model="call.response") {{call.response}}
+    .col-xs-6
+      form.form-horizontal
+        .form-group
+          .col-xs-12
+            h4.alert.alert-success(ng-model="call.cred.response.valid", ng-show="call.cred.response.valid") {{call.cred.response.valid}}
+            h4.alert.alert-danger(ng-model="call.cred.response.invalid", ng-show="call.cred.response.invalid") {{call.cred.response.invalid}}
+        .form-group
+          .col-xs-6
+            label(for="clientid") Client ID
+            input#clientid.form-control(type="text", ng-model="call.clientid")
+          .col-xs-6
+            label(for="clientsecret") Client Secret
+            input#clientsecret.form-control(type="text", ng-model="call.clientsecret")
+            br
+        .form-group
+          .col-xs-12
+            button.btn.btn-primary(ng-click="call.cred.submit()") Test credentials
+        .form-group
+          .col-xs-6
+            select.form-control(ng-model="env.host", ng-options="env.host as env.name for env in call.envs")
+          .col-xs-6
+            select.form-control(ng-model="env.method", ng-options="method.type as method.type for method in call.methods")
+            br
+        .form-group
+          .col-xs-12
+            select.form-control(ng-model="env.endpoint", ng-options="endpoint.url as endpoint.url for endpoint in call.endpoints", disabled)
+            br
+        .form-group
+          .col-xs-12
+            label(for="object") Paste Your Object Here
+            textarea#object.form-control(ng-model="call.data", rows="18", disabled)
+            br
+        .form-group
+          .col-xs-12
+            button.btn.btn-primary(type="button", ng-click="call.submit()", disabled) Submit
+    .col-xs-6
+      div(ng-model="call.response") 
+        ul
+          li(ng-repeat="(key, param) in call.response", style="list-style:none") 
+            b {{key}} : 
+            | {{param}}
