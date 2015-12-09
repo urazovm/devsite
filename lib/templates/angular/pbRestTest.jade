@@ -14,7 +14,6 @@ div
           .col-xs-6
             label(for="clientsecret") Client Secret
             input#clientsecret.form-control(type="text", ng-model="call.clientsecret")
-            br
         .form-group
           .col-xs-12
             button.btn.btn-primary(ng-click="call.cred.submit()") Test credentials
@@ -23,21 +22,18 @@ div
             select.form-control(ng-model="env.host", ng-options="env.host as env.name for env in call.envs")
           .col-xs-6
             select.form-control(ng-model="env.method", ng-options="method.type as method.type for method in call.methods")
-            br
         .form-group
           .col-xs-12
             select.form-control(ng-model="env.endpoint", ng-options="endpoint.url as endpoint.url for endpoint in call.endpoints", disabled)
-            br
         .form-group
           .col-xs-12
             label(for="object") Paste Your Object Here
             textarea#object.form-control(ng-model="call.data", rows="18", disabled)
-            br
         .form-group
           .col-xs-12
             button.btn.btn-primary(type="button", ng-click="call.submit()", disabled) Submit
     .col-xs-6
-      div(ng-model="call.response") 
+      div
         ul
           li(ng-repeat="(key, param) in call.response", style="list-style:none") 
             b {{key}} : 

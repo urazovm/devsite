@@ -17,7 +17,7 @@
           </div>
           <div class="col-xs-6">
             <label for="clientsecret">Client Secret</label>
-            <input id="clientsecret" type="text" ng-model="call.clientsecret" class="form-control"/><br/>
+            <input id="clientsecret" type="text" ng-model="call.clientsecret" class="form-control"/>
           </div>
         </div>
         <div class="form-group">
@@ -30,18 +30,18 @@
             <select ng-model="env.host" ng-options="env.host as env.name for env in call.envs" class="form-control"></select>
           </div>
           <div class="col-xs-6">
-            <select ng-model="env.method" ng-options="method.type as method.type for method in call.methods" class="form-control"></select><br/>
+            <select ng-model="env.method" ng-options="method.type as method.type for method in call.methods" class="form-control"></select>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <select ng-model="env.endpoint" ng-options="endpoint.url as endpoint.url for endpoint in call.endpoints" disabled="disabled" class="form-control"></select><br/>
+            <select ng-model="env.endpoint" ng-options="endpoint.url as endpoint.url for endpoint in call.endpoints" disabled="disabled" class="form-control"></select>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
             <label for="object">Paste Your Object Here</label>
-            <textarea id="object" ng-model="call.data" rows="18" disabled="disabled" class="form-control"></textarea><br/>
+            <textarea id="object" ng-model="call.data" rows="18" disabled="disabled" class="form-control"></textarea>
           </div>
         </div>
         <div class="form-group">
@@ -52,7 +52,7 @@
       </form>
     </div>
     <div class="col-xs-6">
-      <div ng-model="call.response"> 
+      <div>
         <ul>
           <li ng-repeat="(key, param) in call.response" style="list-style:none"> <b>{{key}} : </b>{{param}}</li>
         </ul>

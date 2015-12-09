@@ -45,6 +45,8 @@ app.directive('pbRestTest', function(){
             invalid: null
           },
           submit: function(){
+            $scope.call.cred.response.invalid = null;
+            $scope.call.cred.response.valid = null;
             $scope.call.creds = btoa($scope.call.clientid + ':' + $scope.call.clientsecret);
             $http({
               method: 'POST',
@@ -58,13 +60,16 @@ app.directive('pbRestTest', function(){
             }).then(function(res){
               if(res.data.access_token){
                 $scope.call.cred.response.valid = "Valid Credentials";
+              } else if (res.data.error === "invalid_client") {
+                $scope.call.cred.response.invalid = "Invalid Credentials";
               }
               $scope.call.response = res.data;
             }).catch(function(err){
-              if(!res.data.access_token){
-                $scope.call.cred.response.invalid = 'Invalid Credentials';
+              console.log(err);
+              if(err.statusText === "Unauthorized"){
+                $scope.call.cred.response.invalid = "Invalid Credentials";
               }
-              $scope.call.response = err;
+              $scope.call.response = err.data;
             });
           }
         },

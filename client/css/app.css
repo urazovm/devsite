@@ -4450,3 +4450,7 @@ a.bg-danger:focus, a.bg-danger:hover {
 @media print {
   .hidden-print .hidden-print {
     display: none !important; } }
+
+.form-group input,
+.form-group select {
+  margin: 15px 0px !important; }
