@@ -21,17 +21,23 @@ div
           .col-xs-6
             select.form-control(ng-model="env.host", ng-options="env.host as env.name for env in call.envs")
           .col-xs-6
-            select.form-control(ng-model="env.method", ng-options="method.type as method.type for method in call.methods")
+            
         .form-group
           .col-xs-12
-            select.form-control(ng-model="env.endpoint", ng-options="endpoint.url as endpoint.url for endpoint in call.endpoints", disabled)
+            h4 API Call:
+            select.form-control(ng-model="env.endpoint", ng-options="i as endpoint.name group by endpoint.group for (i, endpoint) in call.endpoints", ng-change="display.changeDisplay(env.endpoint)")
+            h5 {{display.endpoint.group}}
+            h6 Method: {{display.endpoint.method}}
+            label(ng-show="display.endpoint.addIdLabel") {{display.endpoint.addIdLabel}} :
+              input.form-control(ng-model="display.endpoint.addId", type="text", ng-keyup="display.updateAddId()", placeholder="{{display.endpoint.addIdLabel}}")
+            p {{display.endpoint.fullUrl}}
         .form-group
           .col-xs-12
             label(for="object") Paste Your Object Here
-            textarea#object.form-control(ng-model="call.data", rows="18", disabled)
+            textarea#object.form-control(ng-model="call.data", rows="18")
         .form-group
           .col-xs-12
-            button.btn.btn-primary(type="button", ng-click="call.submit()", disabled) Submit
+            button.btn.btn-primary(type="button", ng-click="call.submit()") Submit
     .col-xs-6
       div
         ul
